@@ -1,3 +1,6 @@
+from functools import reduce
+
+
 """1、map函数"""
 # Map会将一个函数映射到一个输入列表的所有元素上
 # 规范：map(function_to_apply, list_of_inpits)
@@ -29,3 +32,13 @@ for i in range(5):
 
 
 """2、filter函数"""
+# filter过滤列表中的元素，并且返回一个由所有符合要求（函数映射到该元素时返回值为True）的元素所构成的列表，类似与于一个for循环，但是它是一个内置函数并且很快
+number_list = range(-5, 5)
+less_than_zero = filter(lambda x: x < 0, number_list)
+print(list(less_than_zero))
+
+
+"""3、Reduce"""
+# 对一个列表进行一些计算并返回结果
+product = reduce((lambda x, y: x * y), [1, 2, 3, 4])
+print(product)
