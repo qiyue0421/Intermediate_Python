@@ -34,7 +34,7 @@ with io.open('summary.txt', 'w', encoding='utf-8') as outf:
 """
 
 
-"""4、基于类实现上下文管理器"""
+"""4、基于类实现上下文管理器
 # 一个上下文管理器的类，最起码要定义__enter__和__exit__方法
 class File(object):
     def __init__(self, file_name, method):
@@ -44,7 +44,6 @@ class File(object):
         return self.file_obj
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-
         self.file_obj.close()
 
 
@@ -60,3 +59,4 @@ with File('demo.txt', 'w') as opened_file:
 6、with语句调用之前暂存的__exit__方法
 7、__exit__方法关闭了文件
 '''
+"""
