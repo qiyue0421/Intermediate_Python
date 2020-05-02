@@ -19,7 +19,7 @@ with open('photo.jpg', 'r+') as f:
 """
 
 
-# 读取一个文件并检测是否是JPG格式
+"""3、读取一个文件并检测是否是JPG格式
 import io
 with open('photo.jpg', 'rb') as inf:
     jpgdata = inf.read()
@@ -31,3 +31,32 @@ else:
 
 with io.open('summary.txt', 'w', encoding='utf-8') as outf:
     outf.write(text % len(jpgdata))
+"""
+
+
+"""4、基于类实现上下文管理器"""
+# 一个上下文管理器的类，最起码要定义__enter__和__exit__方法
+class File(object):
+    def __init__(self, file_name, method):
+        self.file_obj = open(file_name, method)
+
+    def __enter__(self):
+        return self.file_obj
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+
+        self.file_obj.close()
+
+
+with File('demo.txt', 'w') as opened_file:
+    opened_file.write('Hola!')
+
+'''底层发生的事情
+1、with语句先暂存了File类的__exit__方法
+2、然后它调用File类的__enter__方法
+3、__enter__方法打开文件并返回给with语句
+4、打开的文件句柄被传递给opened_file参数
+5、使用write()方法写文件
+6、with语句调用之前暂存的__exit__方法
+7、__exit__方法关闭了文件
+'''
